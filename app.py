@@ -15,13 +15,18 @@ class App(tk.Tk):
         self.geometry("500x600")
         self.config(padx=10, pady=10)
         self.__oficial= tk.StringVar()
+        self.__oficialc= tk.StringVar()
         self.__blue= tk.StringVar()
+        self.__bluec= tk.StringVar()
         self.__liqui= tk.StringVar()
+        self.__liquic= tk.StringVar() 
         self.__mep= tk.StringVar()
+        self.__mepc= tk.StringVar()
         self.__dolar= tk.StringVar()
+        self.__dolarc = tk.StringVar()
         self.__ultact= tk.StringVar()
         self.__fuentelb = Font(family="Times New Roman", size=18)
-        self.__fuenteprecios= Font(family="Times New Roman", size=30)
+        self.__fuenteprecios= Font(family="Times New Roman", size=20)
 
         #Creando Elementos
         self.__frameoficial = ttk.Frame(self, padding="3 3 5 5")
@@ -37,7 +42,7 @@ class App(tk.Tk):
         self.__frameactu = ttk.Frame(self, padding="3 3 5 5")
         self.__frameactu["relief"] = "sunken"
         self.__lbof=ttk.Label(self.__frameoficial, text="Dólar Oficial", font=self.__fuentelb)
-        self.__lbpof=ttk.Label(self.__frameoficial, textvariable=self.__oficial, font=self.__fuenteprecios)
+        self.__lbpof=ttk.Label(self.__frameoficial, textvariable= self.__oficial, font=self.__fuenteprecios)
         self.__lbblue= ttk.Label(self.__frameblue, text="Dólar Blue", font=self.__fuentelb)
         self.__lbpblue=ttk.Label(self.__frameblue, textvariable=self.__blue, font=self.__fuenteprecios)
         self.__lbdolar= ttk.Label(self.__framedolar, text="Dólar", font=self.__fuentelb)
@@ -52,7 +57,7 @@ class App(tk.Tk):
         
         #ubicando elementos
             
-            #Dolar Oficial
+        #Dolar Oficial
         self.__frameoficial.place(anchor=tk.NW,  relwidth=0.49, relheight=0.3, relx=0)
         self.__lbof.place( anchor=tk.CENTER, relwidth = 0.57, relheight= 0.2, relx=0.5, rely=0.2)
         self.__lbpof.pack(fill="x")
@@ -90,13 +95,13 @@ class App(tk.Tk):
     def actualiza(self):
         for aux in self.__cotizaciones.obtener():
             if aux["nombre"] == "Dolar Oficial":
-                self.__oficial.set(aux["venta"])
+                self.__oficial.set("Venta:" +aux["venta"] + "\nCompra: " + aux["compra"])
             elif aux["nombre"] == "Dolar Blue":
-                self.__blue.set(aux["venta"])
+                self.__blue.set("Venta: "+aux["venta"]+ "\nCompra: " + aux["compra"])
             elif aux["nombre"] == "Dolar Contado con Liqui":
-                self.__liqui.set(aux["venta"])
+                self.__liqui.set("Venta: "+aux["venta"]+ "\nCompra: " + aux["compra"])
             elif aux["nombre"] == "Dolar Bolsa":
-                self.__mep.set(aux["venta"])
+                self.__mep.set("Venta: "+aux["venta"]+ "\nCompra: " + aux["compra"])
             elif aux["nombre"] == "Dolar":
-                self.__dolar.set(aux["venta"])
+                self.__dolar.set("Venta: "+aux["venta"]+ "\nCompra: " + aux["compra"])
         self.__ultact.set(datetime.now().strftime('%d - %m - %Y, %H:%M'))
